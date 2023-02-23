@@ -21,6 +21,7 @@
 		FA59BDFC29A7D7F400ECDDE7 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA59BDFA29A7D7F400ECDDE7 /* MockData.swift */; };
 		FA59BDFE29A7D7F900ECDDE7 /* users.json in Resources */ = {isa = PBXBuildFile; fileRef = FA59BDFD29A7D7F900ECDDE7 /* users.json */; };
 		FA59BE0029A7D83D00ECDDE7 /* Bundle+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA59BDFF29A7D83D00ECDDE7 /* Bundle+Extension.swift */; };
+		FA59BE0529A7ECA000ECDDE7 /* UserAndPosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA59BE0429A7ECA000ECDDE7 /* UserAndPosts.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +40,7 @@
 		FA59BDFA29A7D7F400ECDDE7 /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		FA59BDFD29A7D7F900ECDDE7 /* users.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = users.json; sourceTree = "<group>"; };
 		FA59BDFF29A7D83D00ECDDE7 /* Bundle+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extension.swift"; sourceTree = "<group>"; };
+		FA59BE0429A7ECA000ECDDE7 /* UserAndPosts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAndPosts.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 			children = (
 				FA59BDEB29A7CF7600ECDDE7 /* User.swift */,
 				FA59BDED29A7CFAA00ECDDE7 /* Post.swift */,
+				FA59BE0429A7ECA000ECDDE7 /* UserAndPosts.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -209,6 +212,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA59BE0529A7ECA000ECDDE7 /* UserAndPosts.swift in Sources */,
 				FA59BDEC29A7CF7600ECDDE7 /* User.swift in Sources */,
 				FA59BE0029A7D83D00ECDDE7 /* Bundle+Extension.swift in Sources */,
 				FA59BDF329A7D61900ECDDE7 /* UsersListViewModel.swift in Sources */,
