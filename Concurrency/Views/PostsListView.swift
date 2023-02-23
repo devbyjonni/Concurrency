@@ -23,6 +23,13 @@ struct PostsListView: View {
                         .foregroundColor(.secondary)
                 }
             }
+            .alert("Application Error", isPresented: $vm.showAlert, actions: {
+                Button("OK") {}
+            }, message: {
+                if let errorMessage = vm.errorMessage {
+                    Text(errorMessage)
+                }
+            })
         }
         .overlay(content: {
             if vm.isLoading {
@@ -35,6 +42,7 @@ struct PostsListView: View {
         .onAppear {
             vm.userId = userId
             vm.fetchPosts()
+            vm.showAlert = true
         }
     }
 }

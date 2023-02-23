@@ -7,12 +7,27 @@
 
 import Foundation
 
-enum APIError: Error {
+enum APIError: Error, LocalizedError {
     case invalidURL
     case invalidResponseStatus
-    case dataTaskError
+    case dataTaskError(String)
     case corruptData
-    case decodingError
+    case decodingError(String)
+    
+    var errorDescription: String? {
+        switch self {
+        case .invalidURL:
+            return NSLocalizedString("The endpoint URL is invalid", comment: "")
+        case .invalidResponseStatus:
+            return NSLocalizedString("The APIO failed to issue a valid response.", comment: "")
+        case .dataTaskError(let string):
+            return string
+        case .corruptData:
+            return NSLocalizedString("The data provided appears to be corrupt", comment: "")
+        case .decodingError(let string):
+            return string
+        }
+    }
 }
 
 struct APIService {
@@ -38,7 +53,7 @@ struct APIService {
             guard
                 error == nil
             else {
-                completion(.failure(.dataTaskError))
+                completion(.failure(.dataTaskError(error!.localizedDescription)))
                 return
             }
             guard
@@ -47,17 +62,16 @@ struct APIService {
                 completion(.failure(.corruptData))
                 return
             }
-            
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = dateDecodingStrategy
             decoder.keyDecodingStrategy = keyDecodingStrategy
-            
             do {
                 let decodedData = try decoder.decode(T.self, from: data)
                 completion(.success(decodedData))
             } catch {
-                completion(.failure(.decodingError))
+                completion(.failure(.decodingError(error.localizedDescription)))
             }
+
         }
         .resume()
     }
