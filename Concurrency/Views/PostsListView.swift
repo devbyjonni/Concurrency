@@ -9,7 +9,8 @@
 import SwiftUI
 
 struct PostsListView: View {
-    @StateObject var vm = PostsListViewModel(forPreview: true)
+#warning("remove the forPreview argument or set it to false before uploading to App Store")
+    @StateObject var vm = PostsListViewModel(forPreview: false)
     var userId: Int?
     
     var body: some View {
@@ -39,10 +40,9 @@ struct PostsListView: View {
         .navigationTitle("Posts")
         .navigationBarTitleDisplayMode(.inline)
         .listStyle(.plain)
-        .onAppear {
+        .task {
             vm.userId = userId
-            vm.fetchPosts()
-            vm.showAlert = true
+            await vm.fetchPosts()
         }
     }
 }

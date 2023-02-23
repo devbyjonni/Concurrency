@@ -7,18 +7,9 @@
 
 import SwiftUI
 
-//
-//  UsersListView.swift
-//  iOS Concurrency
-//
-//  Created by Stewart Lynch on 2021-11-11.
-//
-
-import SwiftUI
-
 struct UsersListView: View {
-    #warning("remove the forPreview argument or set it to false before uploading to App Store")
-    @StateObject var vm = UsersListViewModel(forPreview: true)
+#warning("remove the forPreview argument or set it to false before uploading to App Store")
+    @StateObject var vm = UsersListViewModel(forPreview: false)
     
     var body: some View {
         NavigationView {
@@ -49,9 +40,8 @@ struct UsersListView: View {
             })
             .navigationTitle("Users")
             .listStyle(.plain)
-            .onAppear {
-                vm.fetchUsers()
-                vm.showAlert = true
+            .task {
+                await vm.fetchUsers()
             }
         }
     }
