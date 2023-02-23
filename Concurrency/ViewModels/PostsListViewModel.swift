@@ -10,7 +10,7 @@ import Foundation
 class PostsListViewModel: ObservableObject {
     @Published var posts: [Post] = []
     @Published var isLoading = false
-    @Published var showAlert = true
+    @Published var showAlert = false
     @Published var errorMessage: String?
     var userId: Int?
     
