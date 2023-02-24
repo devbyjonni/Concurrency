@@ -15,16 +15,16 @@ class UsersListViewModel: ObservableObject {
     
     @MainActor
     func fetchUsers() async {
-        let apiService1 = APIService(urlString: "https://jsonplaceholder.typicode.com/users")
-        let apiService2 = APIService(urlString: "https://jsonplaceholder.typicode.com/posts")
+        let apiServiceUser = APIService(urlString: "https://jsonplaceholder.typicode.com/users")
+        let apiServicePosts = APIService(urlString: "https://jsonplaceholder.typicode.com/posts")
         isLoading.toggle()
         defer {
             isLoading.toggle()
         }
         
         do {
-            async let users: [User] = try await apiService1.getJSON()
-            async let posts: [Post] = try await apiService2.getJSON()
+            async let users: [User] = try await apiServiceUser.getJSON()
+            async let posts: [Post] = try await apiServicePosts.getJSON()
             let (fetchedUsers, fetchedPosts) = await (try users, try posts)
             
             for user in fetchedUsers {
@@ -32,7 +32,6 @@ class UsersListViewModel: ObservableObject {
                 let newUserAndPosts = UserAndPosts(user: user, posts: userPosts)
                 usersAndPosts.append(newUserAndPosts)
             }
-            
         } catch {
             showAlert = true
             errorMessage = error.localizedDescription + "\nPlease contact the developer and provide this error and the steps to reproduce."
